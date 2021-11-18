@@ -8,22 +8,24 @@ export class Directory extends React.Component {
             sections: []
         }
     }
-componentDidMount() {
-        fetch("http://localhost:8080/sections")
-            .then(res=>res.json())
-            .then(sections=>{
-                this.setState({sections:sections});
-            })
-}
 
-render() {
-        return  (
+    componentDidMount() {
+        fetch("http://localhost:8080/sections")
+            .then(res => res.json())
+            .then(sections => {
+                this.setState({sections: sections});
+            })
+    }
+
+    render() {
+        return (
             <div className="directory-menu">
                 {
-                    this.state.sections.map(({id, title, imageUrl}) => (<MenuItem key={id} title={title} image={imageUrl} subtitle="SHOP NOW" size="small"/>))
+                    this.state.sections.map(({id, title, imageUrl, size}) => (
+                        <MenuItem key={id} title={title} image={imageUrl} subtitle="SHOP NOW" size={size}/>))
                 }
             </div>
         )
-}
+    }
 }
 
